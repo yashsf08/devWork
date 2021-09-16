@@ -17,7 +17,7 @@ def navigator(request):
     """)
 
 def removepunc(request):
-    return HttpResponse("Remove Punc")
+    return HttpResponse("<a href='/' target='_blank'>Remove Punc</a>")
     
 def capfirst(request):
     return HttpResponse("Cap First")
