@@ -20,7 +20,11 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
-    path('about/', views.about, name='about'),
     path('quote/', views.quote, name='quote'),
     path('navigator/', views.navigator, name='navigator'),
+    path('removepunc/', views.about, name='removepunc'),
+    path('capfirst/', views.about, name='capfirst'),
+    path('newlineremove/', views.about, name='newlineremove'),
+    path('spaceremove/', views.about, name='spaceremove'),
+    path('charcount/', views.about, name='charcount'),
 ]
