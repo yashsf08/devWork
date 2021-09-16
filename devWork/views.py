@@ -22,10 +22,22 @@ def navigator(request):
        <h1><a href="https://www.quora.com">Quora</a></h1> 
     """)
 
-def removepunc(request):
-    print('You have entered the POST method')
-    print(request.GET.get('myarea', 'default'))
-    return HttpResponse("<a href='/' target='_blank'>Remove Punc</a>")
+def analyze(request):
+    djtext = request.GET.get('myarea', 'default')
+    removepunc = request.GET.get('removepunc', 'off')
+    analyzed_text = "" 
+    if removepunc != 'off':
+        punctuations = """!"#$%&'()*+,-./:;?@[\]^_`{|}~"""
+        for word in djtext:
+            if word not in punctuations:
+                analyzed_text += word
+        
+    params = {
+        'purpose': "Removing Punctuations",
+        'analyzed_text': analyzed_text,
+    }
+
+    return render(request, 'analyze.html', params)
     
 def capfirst(request):
     return HttpResponse("Cap First")
