@@ -1,8 +1,14 @@
 from quote import search
 from django.http import HttpResponse
+from django.shortcuts import render
 
 def index(request):
-    return HttpResponse("Home")
+    # Solution 1
+    # return render(request, 'index.html')
+
+    # Solution 2
+    mydictionary = {'name': 'Yash Kumar Sonune', 'git': 'https://github.com/yashsf08'}
+    return render(request, 'index.html', mydictionary)
 
 def quote(request):
     return HttpResponse("<h1>" + search('family', limit=1)[0]['quote'] + "</h1>")
