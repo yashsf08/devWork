@@ -6,7 +6,15 @@
     <title>Home</title>
 </head>
 <body>
-   <p>You are at the beginning of a page!</p> 
-   <p>I'm {{ name }}, and my github profile is <a href="{{ git }}">Github</a></p>
+   <h1>Welcome to the text analyzer. Enter your text below.</h1> 
+   <form action="/removepunc" method="get">
+        <textarea name="myarea" id="myt" cols="70" rows="10"></textarea>
+        <br>
+        <br>
+        <button type="submit">Analyze Text</button>
+   </form>
+   <footer><p>I'm {{ name }}, and my github profile is <a href="{{ git }}">Github</a></p>
+</footer>
+
 </body>
 </html>

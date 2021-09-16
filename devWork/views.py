@@ -23,6 +23,8 @@ def navigator(request):
     """)
 
 def removepunc(request):
+    print('You have entered the POST method')
+    print(request.GET.get('myarea', 'default'))
     return HttpResponse("<a href='/' target='_blank'>Remove Punc</a>")
     
 def capfirst(request):
