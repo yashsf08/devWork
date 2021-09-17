@@ -23,30 +23,52 @@ def navigator(request):
     """)
 
 def analyze(request):
+    # Initializing Variables
     djtext = request.GET.get('myarea', 'default')
     removepunc = request.GET.get('removepunc', 'off')
-    analyzed_text = "" 
-    if removepunc != 'off':
+    fullcaps = request.GET.get('fullcaps', 'off')
+    newlineremover = request.GET.get('newlineremover', 'off')
+    extraspaceremover = request.GET.get('extraspaceremover', 'off')
+    charcounter = request.GET.get('charcounter', 'off')
+    params = dict()
+    params['purpose'] = ""
+
+    if removepunc == 'on':
         punctuations = """!"#$%&'()*+,-./:;?@[\]^_`{|}~"""
+        analyzed_text = "" 
         for word in djtext:
             if word not in punctuations:
                 analyzed_text += word
+        djtext = analyzed_text 
+        params['purpose'] = "* Removing Punctuations *"
+
+    if fullcaps == 'on':
+        djtext = djtext.upper()
+        params['purpose'] += "* UpperCase *"
+
+    if newlineremover == 'on':
+        analyzed_text = ""
+        for word in djtext:
+            if word != "\n":
+                analyzed_text += word
+
+        djtext = analyzed_text
+        params['purpose'] += "* New Line Remove *"
+
+    if extraspaceremover == 'on':
+        analyzed_text = ""
+        for index, char in enumerate(djtext):
+            if djtext[index] == " " and djtext[index + 1] == " ":
+                pass
+            else: 
+                analyzed_text += char
+
+        djtext = analyzed_text
+        params['purpose'] += "* Extra Space Remove *"
         
-    params = {
-        'purpose': "Removing Punctuations",
-        'analyzed_text': analyzed_text,
-    }
+    if charcounter == 'on':
+        params['counter'] = len(djtext)
+        params['purpose'] += "* Character Count *"
 
+    params['analyzed_text'] = djtext
     return render(request, 'analyze.html', params)
-    
-def capfirst(request):
-    return HttpResponse("Cap First")
-
-def newlineremove(request):
-    return HttpResponse("New Line Remove")
-
-def spaceremove(request):
-    return HttpResponse("Space Remove")
-
-def charcount(request):
-    return HttpResponse("Character Count")
