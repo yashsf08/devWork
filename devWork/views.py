@@ -24,12 +24,12 @@ def navigator(request):
 
 def analyze(request):
     # Initializing Variables
-    djtext = request.GET.get('myarea', 'default')
-    removepunc = request.GET.get('removepunc', 'off')
-    fullcaps = request.GET.get('fullcaps', 'off')
-    newlineremover = request.GET.get('newlineremover', 'off')
-    extraspaceremover = request.GET.get('extraspaceremover', 'off')
-    charcounter = request.GET.get('charcounter', 'off')
+    djtext = request.POST.get('myarea', 'default')
+    removepunc = request.POST.get('removepunc', 'off')
+    fullcaps = request.POST.get('fullcaps', 'off')
+    newlineremover = request.POST.get('newlineremover', 'off')
+    extraspaceremover = request.POST.get('extraspaceremover', 'off')
+    charcounter = request.POST.get('charcounter', 'off')
     params = dict()
     params['purpose'] = ""
     if removepunc == 'on':
