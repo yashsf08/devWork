@@ -32,7 +32,6 @@ def analyze(request):
     charcounter = request.GET.get('charcounter', 'off')
     params = dict()
     params['purpose'] = ""
-
     if removepunc == 'on':
         punctuations = """!"#$%&'()*+,-./:;?@[\]^_`{|}~"""
         analyzed_text = "" 
@@ -49,7 +48,7 @@ def analyze(request):
     if newlineremover == 'on':
         analyzed_text = ""
         for word in djtext:
-            if word != "\n":
+            if word != "\r" and word != "\n":
                 analyzed_text += word
 
         djtext = analyzed_text
